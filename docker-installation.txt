@@ -1,0 +1,39 @@
+Docker installation on CentOS
+
+# Step 1 (get docker repository and install)
+curl -fsSL https://get.docker.com/ | sh
+
+# Step 2 (Check docker info)
+docker info
+
+# Step 3 (Check docker status)
+systemctl status docker
+
+# Step 4 (Enable docker service)
+systemctl enable docker
+
+# Setp 5 (Start Docker)
+systemctl start docker
+
+#Now Docker installation is completed  Best of luck.
+
+# Add docker http and https proxy.
+  # Step 1 (Create Directory)
+    mkdir -p /etc/systemd/system/docker.service.d
+
+  # Step 2 (Create http config file)
+    touch /etc/systemd/system/docker.service.d/http-proxy.conf
+
+    # Put the below code on http-proxy.conf file.
+        [Service]
+        Environment="HTTP_PROXY=http://nsez-s500:8080"
+
+  # Setp 3 (Create https config file)
+    touch /etc/systemd/system/docker.service.d/http-proxy.conf
+
+    # Put the below code on https-proxy.conf file.
+        [Service]
+        Environment="HTTPS_PROXY=http://nsez-s500:8080"
+
+
+# Proxy setting save successfully. if proxy is not working remove https-proxy.conf file then check Best of luck.
